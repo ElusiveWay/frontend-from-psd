@@ -201,6 +201,9 @@ main{
     padding-top:60px;
     z-index: 2;
 }
+.flexElem.right > .block.hidden .point{
+    display: none;
+}
 .flexElem.right > .block::before{
     content:'';
     position: absolute;
@@ -253,6 +256,7 @@ main{
 }
 .block.photo > div.cont > span{
     color:white;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.76);
     font-family: 'Times New Roman', Times, serif;
     float: right;
     margin-right: 3px;
@@ -263,6 +267,10 @@ main{
 .block.photo > p{
     margin-top:18px;
     margin-left:18px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-right: 10px;   
 }
 .botty{
     margin:18px;
@@ -307,11 +315,15 @@ main{
     background-position: center;
     background-repeat: no-repeat;
     cursor: pointer;
+    transition: 0.3s;
+    &:hover{
+        background-color: #e786ff;;
+    }
 }
         /*-----------------------------------------------*/
         /*Comment blocks*/
-.block.comment{
-    display:flex;
+.block.comment{ 
+    display:flex; 
     align-items:center;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -338,7 +350,7 @@ main{
   border-radius:50%;
   border:0;
   cursor:pointer;
-  background-color:white;
+  background-color:white; 
   background-image: url('./out/imgs/plus.jpg');
   background-size:cover;
   background-repeat:no-repeat;
@@ -350,5 +362,66 @@ main{
 .block.comment > span{
     text-indent: 10px;
     margin:15px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-right: 10px;
 }
+
+// ADD POST BUTTON
+    .add-new-post{
+        position: absolute;
+        top:10px;
+        left:-350px;
+        padding:10px;
+        padding-top:12px;
+        box-sizing: border-box;
+        background-color: #7a8294;
+        border:5px solid transparent;
+        color: white;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.3s;
+        z-index: 1;
+        &:before{
+            content:'';
+            position: absolute;
+            width:3px;
+            margin-left:33px;
+            top:-100px;
+            height: 95px;
+            background-color: #7a8294;
+        }
+        &:hover{
+            border:5px solid rgb(178, 200, 218);
+            color:white;
+            background-color: #7baff0;
+        }
+    }
+    .add-new-post-form{
+        position: absolute;
+        top: 72px;
+        left: -350px;
+        display: block;
+        width:200px;
+        height: auto;
+        padding:15px;
+        border-radius: 10px;
+        background-color: rgb(255, 255, 255);
+        & *::placeholder{
+            text-align: center;
+            font-size: 12px;
+        }
+        & input{
+            padding:5px;
+            display: block;
+            width:100%;
+        }
+    }
+    div.flexElem > div > p:first-child {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        padding-right: 10px;
+    }
 /*-----------------------------------------------*/

@@ -12,18 +12,16 @@ module.exports = {
     rules: [ 
       {
         test: /\.(ttf|eot|svg|png|jpg|gif|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'file-loader',
-        options: {
-          outputPath: 'imgs-from-scss',
-        },
+        //loader: 'file-loader',
+        use: 'file-loader?name=[name].[ext]&outputPath=./assets/'
       },
       {
         test: /\.scss$/,
         exclude: /node_modules/,
         use: [
-          "style-loader",
+          //"style-loader",
+          MiniCssExtractPlugin.loader,
           "css-loader",
-          //MiniCssExtractPlugin.loader,
           "sass-loader",
         ]
       }

@@ -1,4 +1,21 @@
 const app = (function (){
+    const pointController = ()=>{
+        let arr = []
+        document.querySelectorAll('.flexElem.left .block').forEach(v=>arr.push(v.offsetTop))
+        document.querySelectorAll('.flexElem.right .block').forEach(v=>{
+            if(arr.some(l=>{return (v.offsetTop-8 < l && v.offsetTop+8 > l)})){
+                $(v).addClass("hidden")
+                console.log('hidden')
+                console.log(v)
+            }
+            else{
+                $(v).removeClass("hidden")
+                console.log('unhidden')
+                console.log(v)
+            }
+        })
+    }
+    setInterval(function(){pointController()},1000)
     const photoArr = [                              //data, for example from DataBase
             {
                 url:'./imgs/lake.jpg',
@@ -134,6 +151,38 @@ const app = (function (){
             this.comments = comments;
         }
     }
+    //button add post
+    function addPost(url='',date,description,mg,twi='',link=''){
+        const obj = {
+            url: url,
+            date: (date=='')?([new Date()][0].toLocaleDateString()):date,
+            description: description.slice(0,40),
+            mg:(mg=='')?0:mg,
+            twi:twi,
+            link:link,
+            comments:[]
+        }
+        photoArr.unshift(obj);
+        app.init();
+    }
+    function addComment(obj){
+        let long,short,
+            text = obj[0].value;
+        if (text.length < 35){
+            short = text,
+            long = ''
+        }
+        else{
+            short = text.slice(0,35) + '..',
+            long = '..'+ text.slice(35)
+        }
+        photoArr[obj.dataset.aidi].comments.push({
+            short: short,
+            long: long,
+            mg:0
+        })
+        app.init()
+    }
     //just  toggler
     function toggleBull(){
         appBull=!appBull;
@@ -145,7 +194,7 @@ const app = (function (){
             page++;
             let ite = (page*4 > photoArr.length) ? photoArr.length : page*4;
             for(let i=(page-1)*4; i<ite; i++){
-                drawBlock(blocksArr[i], toggleBull());
+                drawBlock(blocksArr[i], toggleBull(), i);
             }
             if (page*4 >= photoArr.length){
                 let el = document.getElementsByClassName('loadmore')[0];
@@ -179,7 +228,7 @@ const app = (function (){
             }
         })
     }
-    function drawBlock(data, posLeft){
+    function drawBlock(data, posLeft, i){
             //Photo block drawing, default structure
             let  el = document.createElement('div');
             el.classList.value = "block photo";
@@ -195,10 +244,10 @@ const app = (function (){
                                         <a href="${data.twi}" class="twitter"></a>
                                         <span>Comment</span>
                                     </div>
-                                    <div class="form">
-                                        <textarea class="formTA"></textarea>
+                                    <form onsubmit="event.preventDefault(); app.addComment(this)" data-aidi="${i}" class="form">
+                                        <textarea required class="formTA"></textarea>
                                         <button type="submit"></button>
-                                    </div>`;
+                                    </form>`;
             if(data.mg!=0) el.style.marginTop = `${data.mg}px`;
             /* append to right / left side */
             if(posLeft){
@@ -210,7 +259,7 @@ const app = (function (){
             //draw comments of the photoBlock
             drawComment(data.comments, posLeft);
     }
-    function init(){
+    function init (){           //init
         blocksArr = [];
         //empty space
         document.querySelector('.flexElem.left').innerHTML = "";
@@ -224,16 +273,19 @@ const app = (function (){
         }
         //draw first page
         for(let i = 0; i< iter;i++){   
-            drawBlock(blocksArr[i], toggleBull());       
+            drawBlock(blocksArr[i], toggleBull(), i);       
         }
         return blocksArr;
     }
     return {
         page : ()=>page,
         init : init,
-        loadmore : loadmore
+        loadmore : loadmore,
+        blocksArr : blocksArr,
+        addPost : addPost,
+        addComment : addComment
     };
 })()
-app.init();
+app.init()
 //nodeJs
-global.app = app;
+module.exports = app

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script defer src="out.js"></script>
     <link rel="stylesheet" href="style.css">
     <title>My Photography Portfolio</title>
@@ -12,11 +13,23 @@
     <div class="topBG"></div>
     <div class="centerBG"></div>
     <header>
-        <div class="photoFolio"></div>
+        <div class="photoFolio">
+            <button onclick="$('.add-new-post-form').toggle()" class="add-new-post">ADD POST</button>
+            <form style="display:none;" onsubmit="event.preventDefault();app.addPost(this[2].value,this[3].value,this[0].value,this[1].value)" action="add-post" class="add-new-post-form">
+                <input type="text" required placeholder="Description" pattern="^[A-Za-zА-Яа-яЁё0-9\- _!,.:+=?)(]*$" name="post-text" id="post-text">
+                <input type="text" placeholder="Margin (empty for '0')" pattern="\d{1,2}" name="post-margin" id="post-margin">
+                <input type="text" required placeholder="Picture url (from outside)" pattern="^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$" name="post-url" id="post-url">
+                <input type="text" placeholder="Date (empty for current date)" pattern="\w{1,25}" name="post-date" id="post-date">
+                <input type="submit" value="Ok">
+            </form>
+        </div>
         <h1>My Photography Portfolio</h1>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+
     </header>
+    
     <main>
+        
         <div class="flexCont">
             <div class="flexElem left"></div>
             <div class="flexElem">
