@@ -1,7 +1,7 @@
 const app = (function (){
     const photoArr = [                              //data, for example from DataBase
             {
-                url:'imgs/lake.jpg',
+                url:'./imgs/lake.jpg',
                 date:'10/07/2013',
                 description:`Lorem Ipsum is simply dummy text`,
                 mg:90,
@@ -16,7 +16,7 @@ const app = (function (){
                 ]
             },
             {
-                url:'imgs/kid.jpg',
+                url:'./imgs/kid.jpg',
                 date:'10/07/2013',
                 description:`Lorem Ipsum is simply dummy text`,
                 mg:0,
@@ -25,7 +25,7 @@ const app = (function (){
                 comments:[]
             },
             {
-                url:'imgs/butterfly.jpg',
+                url:'./imgs/butterfly.jpg',
                 date:'10/07/2013',
                 description:`Lorem Ipsum is simply dummy text`,
                 mg:0,
@@ -45,7 +45,7 @@ const app = (function (){
                 ]
             },
             {
-                url:'imgs/ladder.jpg',
+                url:'../imgs/ladder.jpg',
                 date:'10/07/2013',
                 description:`Lorem Ipsum is simply dummy text`,
                 mg:90,
@@ -70,7 +70,7 @@ const app = (function (){
                 ]
             },
             {
-                url:'imgs/kid.jpg',
+                url:'./imgs/kid.jpg',
                 date:'10/07/2013',
                 description:`Lorem Ipsum is simply dummy text`,
                 mg:0,
@@ -95,7 +95,7 @@ const app = (function (){
                 ]
             },
             {
-                url:'imgs/lake.jpg',
+                url:'./imgs/lake.jpg',
                 date:'10/07/2013',
                 description:`Lorem Ipsum is simply dummy text`,
                 mg:0,

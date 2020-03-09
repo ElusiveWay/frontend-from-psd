@@ -1,4 +1,4 @@
-/*Presettings*/
+
 @font-face {
     font-family: "seguisym";
     src: url("seguisym.ttf");
@@ -10,7 +10,7 @@
 *{
     padding:0;
     margin:0;
-    box-sizing:border-box;
+    box-sizing:border-box; 
 }
 *::selection {
     background: rgba(255,251,102, 0.8);
@@ -26,25 +26,24 @@ body{
     height: auto;
     background-color: #56555c;
     position: absolute;
-}
-body .topBG{
-    background-image:url('imgs/beforeBG.png');
-    background-size: cover;
-    position: absolute;
-    left:0;
-    top:0;
-    width:100%;
-    height: calc(100vw / 1.475); /*image size depending*/
-    z-index:-9999;
-
-}
-body > .botBG{
-    background-image:url('imgs/afterBG.png');
-    background-size: cover;
-    width:100%;
-    opacity: 0.29;
-    height:calc(100vw / 3.694); 
-    z-index:-9999;
+    .topBG{
+        background-image:url('./out/imgs/beforeBG.png');
+        background-size: cover;
+        position: absolute;
+        left:0;
+        top:0;
+        width:100%;
+        height: calc(100vw / 1.475); /*image size depending*/
+        z-index:-9999; 
+    }
+    .botBG{
+        background-image:url('./out/imgs/afterBG.png');
+        background-size: cover;
+        width:100%;
+        opacity: 0.29;
+        height:calc(100vw / 3.694); 
+        z-index:-9999;
+    }
 }
 /*-----------------------------------------------*/
 /*header : Description, logo and */
@@ -57,35 +56,38 @@ body > .botBG{
     height: 60px;
 }
 .photoFolio{
-    height: 15.715vw; /*220px to viewport*/
-    width: 15.715vw;
+    height: 220px;
+    width: 220px;
     margin-top:35px;
     position: relative;
-    margin-left:calc(50% - 7.857vw);
+    margin-left:50%; 
+    transform: translateX(-50%);
     margin-bottom:30px;
-    background-image: url('imgs/logo.png');
+    background-image: url('./out/imgs/logo.png');
     background-size: 70%;
     background-repeat: no-repeat;
     background-position:center;
     border-radius: 50%;
     background-color:#7baff0;
 }
-header h1{
-    margin-bottom:45px; 
-    text-align: center;
-    font-family: 'seguisym', Arial, sans-serif;
-    color:white;
-    font-size:50.63px;
-    font-weight:normal;
-}
-header p {
-    width:800px;
-    margin:auto;
-    font-family: 'seguisym', Arial, sans-serif;
-    color:white;
-    font-size: 16.63px;
-    text-align: justify;
-    margin-bottom:30px;
+header {
+    h1{
+        margin-bottom:45px; 
+        text-align: center;
+        font-family: 'seguisym', Arial, sans-serif;
+        color:white;
+        font-size:50.63px;
+        font-weight:normal;
+    }
+    p {
+        width:800px;
+        margin:auto;
+        font-family: 'seguisym', Arial, sans-serif;
+        color:white;
+        font-size: 16.63px;
+        text-align: justify;
+        margin-bottom:30px;
+    }
 }
 /*-----------------------------------------------*/
 /*main content blocks*/
@@ -112,35 +114,33 @@ main{
     align-self:stretch;
     flex-wrap: nowrap;
 }
-.flexElem{
-    display:flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
-}
 .startCircle{
     width:26px;
     height: 26px;
     border:5px solid white;
     border-radius: 50%;
 }
-.flexElem .line{
-    width:6px;
-    height: 100%;
-    background-color:white;
-}
-
-.flexElem .line:nth-child(2){
-    margin-top:-1px;
-    padding-bottom:1px;
-    box-sizing: content-box;
-}
-
-.flexElem .circle{
-    width:12px;
-    height: 12px;
-    background-color:white;
-    border-radius: 50%;
-    margin:3px 0;
+.flexElem{
+    display:flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    .line{
+        width:6px;
+        height: 100%;
+        background-color:white;
+        &::nth-child(2){
+            margin-top:-1px;
+            padding-bottom:1px;
+            box-sizing: content-box;
+        }
+    }
+    .circle{
+        width:12px;
+        height: 12px;
+        background-color:white;
+        border-radius: 50%;
+        margin:3px 0;
+    }
 }
 /* load more button*/
 .loadmore{
@@ -156,14 +156,14 @@ main{
     cursor: pointer;
     user-select: none;
     margin-top:6px;
+    &:hover > img{
+        animation: turnAround 1s infinite;
+    }
 }
 .loadmore > img{
     margin-right: 12px;
     width:auto;
     height: auto;
-}
-.loadmore:hover > img{
-    animation: turnAround 1s infinite;
 }
 /*middle points*/
 .block > .point{
@@ -183,7 +183,7 @@ main{
 }
 .flexElem.right > .block > .point{
     margin-left:-49px;
-    margin-top:16.5px;
+    margin-top:16.5px; 
 }
 /************************************/
 .flexElem.left > .block::before{
@@ -273,14 +273,14 @@ main{
     color:#a0a0a0;
 }
 .botty > .links > a:first-child{
-    background-image: url('imgs/url.png');
+    background-image: url('./out/imgs/url.png');
 }
 .botty > .links > a{
     width:26px;
     height: 26px;
     border-radius: 2px;
     margin-right: 10px;
-    background-image: url('imgs/twi.png');
+    background-image: url('./out/imgs/twi.png');
 }
         /*-----------------------------------------------*/
         /*Submit panel, for comments inside photo blocks.*/
@@ -303,7 +303,7 @@ main{
     width: 50px;
     height: 50px;
     border-width:0;
-    background-image: url('imgs/ok.png');
+    background-image: url('./out/imgs/ok.png');
     background-position: center;
     background-repeat: no-repeat;
     cursor: pointer;
@@ -339,7 +339,7 @@ main{
   border:0;
   cursor:pointer;
   background-color:white;
-  background-image: url('imgs/plus.jpg');
+  background-image: url('./out/imgs/plus.jpg');
   background-size:cover;
   background-repeat:no-repeat;
   transition-duration: 0.3s;
